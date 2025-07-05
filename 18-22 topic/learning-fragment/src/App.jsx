@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ErrorMessage from "./components/ErrorMessage";
 import Container from "./components/Container";
 import FoodInput from "./components/FoodInput";
+import { useState } from "react";
 
 function App() {
   //let foodItems = [];
@@ -18,12 +19,19 @@ function App() {
     "Mango",
   ];
 
+  let [textToshow, setTextState] = useState("Food Item Enterd by user");
+  const handleOnChange = (event) => {
+    console.log(event.target.value);
+    setTextState(event.target.value);
+  };
+
   return (
     <>
       <Container>
         <h1 className="food-heading">Healthy Food</h1>
         <ErrorMessage items={foodItems}></ErrorMessage>
-        <FoodInput></FoodInput>
+        <FoodInput handleOnChange={handleOnChange}></FoodInput>
+        <p>{textToshow}</p>
         <FoodItems items={foodItems}></FoodItems>
       </Container>
       {/* <Container>
